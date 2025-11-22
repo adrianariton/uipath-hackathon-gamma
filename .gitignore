@@ -1,8 +1,0 @@
-# All .env
-*.env
-
-# Ignore .env files in subdirectories
-**/*.env
-
-# Ignore all venv
-**/.venv/
