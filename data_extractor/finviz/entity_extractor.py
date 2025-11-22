@@ -63,12 +63,12 @@ class EntityExtractor:
         model: str | None = None,
         base_url: str | None = None,
     ) -> None:
-        self.api_key = api_key or os.environ.get("OPENROUTER_API_KEY")
+        self.api_key = api_key or os.environ.get("API_KEY")
         if not self.api_key:
-            raise ValueError("OPENROUTER_API_KEY is required. Set it in the environment or .env file.")
+            raise ValueError("API_KEY is required. Set it in the environment or .env file.")
 
-        self.model = model or os.environ.get("OPENROUTER_MODEL", "google/gemini-2.5-flash-lite")
-        self.base_url = base_url or os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
+        self.model = model or os.environ.get("MODEL", "google/gemini-2.5-flash-lite")
+        self.base_url = base_url or os.environ.get("GPT_URL", "https://openrouter.ai/api/v1")
         self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
 
     def _build_prompt(self, user_prompt: str) -> str:

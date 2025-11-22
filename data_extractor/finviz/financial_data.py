@@ -34,6 +34,8 @@ class TickerData(BaseModel):
     news: List[NewsItem] = Field(default_factory=list)
     metrics: Dict[str, str] = Field(default_factory=dict)
     historical: List[HistoricalBar] = Field(default_factory=list)
+    
+    
 
 
 class FinvizScraper:

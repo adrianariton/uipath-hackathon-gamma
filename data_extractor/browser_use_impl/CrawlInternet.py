@@ -72,7 +72,24 @@ If you cannot find enough data from official documents, you can supplement it wi
 from relevant news articles.
 """
 
+# query_id -> {result: json from pydantic, status: "in_progress"|"done"}
+GLOBAL_CNT = 0
+QUERIES_RESULTS = {}
+
+# Get a couroutine and perform the result and writing to file in background
+
 async def basic_search(company_name: str, locations: List[str] = []):
+	global GLOBAL_CNT
+ 
+	if os.path.exists(f'./data/{company_name}_structured_output.pkl'):
+		print(f'Loading existing structured output for {company_name}...')
+		structured_output: NewsArticlesOutput = pickle.load(open(f'./data/{company_name}_structured_output.pkl', 'rb'))
+		print(structured_output)
+		current_cnt=  GLOBAL_CNT
+		GLOBAL_CNT += 1
+		QUERIES_RESULTS[current_cnt] = {"status": "done", "result": structured_output.model_dump_json()}
+		yield current_cnt
+		return
 	# """Simplest usage - just pass cloud params directly."""
 	browser = Browser(use_cloud=False, auto_download_pdfs=True, downloads_path='./downloads',
                    accept_downloads=True)
@@ -89,19 +106,27 @@ async def basic_search(company_name: str, locations: List[str] = []):
         step_timeout=30,
         max_steps=15
 	)
+ 
+	current_cnt=  GLOBAL_CNT
+	GLOBAL_CNT += 1
+	QUERIES_RESULTS[current_cnt] = {"status": "in_progress", "result": None}
+ 
+	yield current_cnt
 
 	history = await agent.run()
-	
-	with open('structured_output.json', 'w') as f:
-		print(history.model_dump_json(), file=f)
-	print(f'Usage: {history.usage}')
- 
-	print(history.structured_output)
 
+	QUERIES_RESULTS[current_cnt]["result"] = history.structured_output.model_dump_json()
+	QUERIES_RESULTS[current_cnt]["status"] = "done"
+
+	with open('structured_output.json', 'w') as f:
+		print(history.structured_output, file=f)
+	print(f'Usage: {history.usage}')
 	pickle.dump(history.structured_output, open(f'data/{company_name}_structured_output.pkl', 'wb'))
 
-def main():
-    asyncio.run(basic_search("Bending Spoons", locations=["IT"]))
+async def main():
+    async for query_id in basic_search("Bending Spoons", locations=["IT"]):
+        print(f"Query ID: {query_id}")
+        # You can check the status with: QUERIES_RESULTS[query_id]
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
