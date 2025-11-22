@@ -3,7 +3,7 @@ name = "excel-mcp-server"
 version = "0.1.7"
 description = "Excel MCP Server for manipulating Excel files"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "mcp[cli]>=1.10.1",
     "fastmcp>=2.0.0,<3.0.0",
@@ -14,10 +14,12 @@ dependencies = [
     "openai>=2.8.1",
     "dotenv>=0.9.9",
     "bs4>=0.0.2",
+    "browser-use>=0.9.7",
+    "browser-use-sdk>=2.0.5",
 ]
 [[project.authors]]
-name = "haris"
-email = "haris.musa@outlook.com"
+name = "luCa"
+email = "carollucagasan@gmail.com"
 
 [project.scripts]
 excel-mcp-server = "excel_mcp.__main__:app"

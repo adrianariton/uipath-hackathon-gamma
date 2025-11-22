@@ -19,10 +19,10 @@ async def start_crawl(prompt: str, company_name: Optional[str] = None, locations
     # may not have the heavy `browser-use` or Playwright runtime available;
     # fall back to a limited mode that only runs entity extraction + finviz
     # snapshot if the browser agent modules are missing.
-    from data_extractor.finviz.entity_extractor import EntityExtractor
-    from data_extractor.finviz.financial_data import FinvizScraper
+    from .finviz.entity_extractor import EntityExtractor
+    from .finviz.financial_data import FinvizScraper
     try:
-        from data_extractor.browser_use_impl.CrawlInternet import basic_search, QUERIES_RESULTS
+        from browser_use_impl.CrawlInternet import basic_search, QUERIES_RESULTS
         _has_browser_impl = True
     except Exception:
         basic_search = None
@@ -69,8 +69,10 @@ def get_crawl_status(query_id: int) -> Dict[str, Any]:
     """Return the crawl status stored in `CrawlInternet.QUERIES_RESULTS`.
 
     If the query id is not found, returns an error dict similar to the REST endpoint.
+
+    Get this data later, after 3 minutes since you got the query_id.
     """
-    from data_extractor.browser_use_impl.CrawlInternet import QUERIES_RESULTS
+    from .browser_use_impl.CrawlInternet import QUERIES_RESULTS
 
     if query_id in QUERIES_RESULTS:
         return QUERIES_RESULTS[query_id]
