@@ -11,16 +11,18 @@ from mcp.types import Tool, TextContent
 
 app = Server("test-mcp-server")
 
+cert_file = "/Users/alexandruariton/.office-addin-dev-certs/localhost.crt"
+key_file  = "/Users/alexandruariton/.office-addin-dev-certs/localhost.key"
 # Trimite comanda catre Backend-ul principal (port 8000)
 # Backend-ul o va da mai departe la Excel prin WebSocket
 # MCP SERVER: Modifică to_server
 def to_server(key : str, data: dict):
-    url = 'http://localhost:8000/enqueue' 
+    url = 'https://localhost:8000/enqueue' 
     headers = {'Content-type': 'application/json'}
     payload = {'command': key, 'params' : data}
     
     try: # Adaugă un try/except AICI
-        response = requests.post(url, json=payload, headers=headers, timeout=30)
+        response = requests.post(url, json=payload, headers=headers, timeout=30, verify=cert_file)
         response.raise_for_status() # Aruncă excepție pentru 4xx/5xx HTTP
         
         json_resp = response.json()

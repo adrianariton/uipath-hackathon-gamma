@@ -20,6 +20,8 @@ load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY") # PUNE CHEIA TA AICI!!!
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODEL = "openai/gpt-4o"
+cert_file = "/Users/alexandruariton/.office-addin-dev-certs/localhost.crt"
+key_file  = "/Users/alexandruariton/.office-addin-dev-certs/localhost.key"
 
 # Globale
 AVAILABLE_TOOLS = []
@@ -244,4 +246,4 @@ if __name__ == "__main__":
         print(f"✅ Incarcat {len(AVAILABLE_TOOLS)} unelte.")
 
     # PORNIM APP
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True, ssl_context=(cert_file, key_file))
