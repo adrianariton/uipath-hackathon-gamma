@@ -1,0 +1,12 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "browser-use>=0.9.7",
+    "browser-use-sdk>=2.0.5",
+    "playwright>=1.56.0",
+    "pydantic>=2.12.4",
+]
