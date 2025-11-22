@@ -39,6 +39,7 @@ from excel_mcp.sheet import (
     delete_cols,
 )
 from excel_mcp.news import get_latest_news
+from excel_mcp.browser_use_client import start_crawl as start_crawl_impl, get_crawl_status as get_crawl_status_impl
 
 # Get project root directory path for log file path.
 # When using the stdio transmission method,
@@ -294,6 +295,37 @@ async def get_the_news(
     except Exception as e:
         logger.error(f"Error writing data: {e}")
         raise
+
+
+@mcp.tool()
+async def start_crawl(
+    prompt: str,
+    company_name: Optional[str] = None,
+    locations: Optional[List[str]] = None,
+):
+    """Start the browser-use based crawl for a prompt and return queue index + finviz snapshot.
+
+    Mirrors the behaviour of the standalone `data_extractor` service: it extracts
+    tickers from the prompt, enqueues a browser agent job and returns the index
+    in queue together with a lightweight Finviz snapshot for the extracted tickers.
+    """
+    try:
+        result = await start_crawl_impl(prompt=prompt, company_name=company_name, locations=locations)
+        return result
+    except Exception as e:
+        logger.error(f"Error starting crawl: {e}")
+        return {"status": "error", "message": str(e)}
+
+
+@mcp.tool()
+def get_crawl_status(query_id: int) -> str:
+    """Return the status/result for a given crawl queue id."""
+    try:
+        result = get_crawl_status_impl(query_id)
+        return str(result)
+    except Exception as e:
+        logger.error(f"Error getting crawl status: {e}")
+        return str({"status": "error", "message": str(e)})
 
 @mcp.tool()
 def create_workbook(filepath: str) -> str:

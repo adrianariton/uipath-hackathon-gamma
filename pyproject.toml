@@ -12,6 +12,8 @@ dependencies = [
     "anthropic>=0.74.1",
     "python-dotenv>=1.2.1",
     "openai>=2.8.1",
+    "dotenv>=0.9.9",
+    "bs4>=0.0.2",
 ]
 [[project.authors]]
 name = "haris"
