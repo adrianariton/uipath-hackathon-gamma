@@ -1,0 +1,61 @@
+{
+  "articles": [
+    {
+      "title": "Bending Spoons’s $11B Valuation, Vimeo Deal Signal New Era for Italian Tech",
+      "link": "https://ww.fashionnetwork.com/news/Bending-spoons-s-11b-valuation-vimeo-deal-signal-new-era-for-italian-tech,1636345.html",
+      "is_pdf": false,
+      "summary": "Bending Spoons, a Milan-based technology company, has achieved a pre-money valuation of $11 billion after a recent funding round of $710 million led by Durable Capital Partners. The company, which has around 500 employees, is also in the process of acquiring Vimeo. Bending Spoons is considering an IPO in the US in the next two to three years.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "2025",
+            "company_stats": {
+              "market_cap_million_usd": 11000,
+              "employees_count": 500,
+              "headquarters_location": "Milan, Italy",
+              "ipo_date": null,
+              "sector": "Technology",
+              "industry": "Software"
+            },
+            "income_statement": null,
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": [
+              {
+                "round_name": "Venture",
+                "amount_raised_million_usd": 710,
+                "lead_investors": "Durable Capital Partners",
+                "valuation_post_money_million_usd": null
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Vimeo shareholders approve merger with Bending Spoons US",
+      "link": "https://www.investing.com/news/sec-filings/vimeo-shareholders-approve-merger-with-bending-spoons-us-93CH-4368892",
+      "is_pdf": false,
+      "summary": "Vimeo shareholders have approved a merger with Bending Spoons US Inc. in an all-cash transaction valued at $1.38 billion. Following the merger, Vimeo will become a wholly owned subsidiary of Bending Spoons US. Vimeo also announced a global workforce reduction of nearly 10 percent.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "2025",
+            "company_stats": null,
+            "income_statement": null,
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": [
+              {
+                "round_name": "Acquisition",
+                "amount_raised_million_usd": 1380,
+                "lead_investors": null,
+                "valuation_post_money_million_usd": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

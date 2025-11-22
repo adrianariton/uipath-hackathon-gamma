@@ -1,0 +1,200 @@
+{
+  "articles": [
+    {
+      "title": "TechStartups: OpenAI lost $11.5 billion last quarter",
+      "link": "https://techstartups.com/2025/10/29/microsoft-just-revealed-that-openai-lost-more-than-11-5b-last-quarter/",
+      "is_pdf": false,
+      "summary": "This article reports that OpenAI experienced a significant financial loss of $11.5 billion in the most recent quarter, a figure revealed through Microsoft's financial disclosures.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "Q3 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": null,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": -11500,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": null
+          }
+        ]
+      }
+    },
+    {
+      "title": "Futurism: Confirms the $11.5 billion loss reported by Microsoft",
+      "link": "https://futurism.com/the-byte/microsoft-reveals-openai-lost-11-5-billion",
+      "is_pdf": false,
+      "summary": "This article corroborates the news of OpenAI's $11.5 billion quarterly loss, citing Microsoft's financial filings as the source of this information.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "Q3 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": null,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": -11500,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": null
+          }
+        ]
+      }
+    },
+    {
+      "title": "Reuters: OpenAI generated $4.3 billion in revenue in the first half of 2025",
+      "link": "https://www.reuters.com/technology/openai-tells-staff-its-revenue-hit-43-billion-first-half-2025-2025-10-29/",
+      "is_pdf": false,
+      "summary": "According to this Reuters report, OpenAI's revenue reached $4.3 billion in the first six months of 2025, indicating substantial business growth despite its losses.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "H1 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": 4300,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": null,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": null
+          }
+        ]
+      }
+    },
+    {
+      "title": "Yahoo Finance: OpenAI completed a major corporate restructuring",
+      "link": "https://finance.yahoo.com/news/openai-completes-transition-for-profit-180000613.html",
+      "is_pdf": false,
+      "summary": "This article focuses on OpenAI's corporate restructuring, noting its transition to a for-profit entity. While not providing specific financial figures, this is a key event with significant financial implications.",
+      "financial_data": null
+    },
+    {
+      "title": "Thurrott.com: OpenAI lost about $12 billion in the previous quarter",
+      "link": "https://www.thurrott.com/cloud/299333/microsofts-q1-fy26-earnings-openai-lost-12-billion-in-the-previous-quarter",
+      "is_pdf": false,
+      "summary": "This article reports on OpenAI's financial performance in the quarter prior to the most recent one, stating a loss of approximately $12 billion and mentioning Microsoft's 32.5% ownership stake at that time.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "Q2 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": null,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": -12000,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": null
+          }
+        ]
+      }
+    },
+    {
+      "title": "Microsoft just revealed that OpenAI lost more than $11.5B last quarter",
+      "link": "https://www.theregister.com/2025/10/29/microsoft_earnings_q1_26_openai_loss",
+      "is_pdf": false,
+      "summary": "This article details the revelation of OpenAI's substantial quarterly loss of over $11.5 billion, as inferred from Microsoft's earnings report. It discusses the equity accounting method used, Microsoft's investment commitment of $13 billion ($11.6 billion funded), and its ownership stake, which was recently updated to 27%. It also references the $4.3 billion revenue for the first half of the year.",
+      "financial_data": {
+        "periods_data": [
+          {
+            "period": "Q3 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": null,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": -11500,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": [
+              {
+                "round_name": "Microsoft Funding Commitment",
+                "amount_raised_million_usd": 13000,
+                "lead_investors": "Microsoft",
+                "valuation_post_money_million_usd": null
+              }
+            ]
+          },
+          {
+            "period": "H1 2025",
+            "company_stats": null,
+            "income_statement": {
+              "net_trading_income_million_eur": null,
+              "other_income_million_eur": null,
+              "total_income_million_eur": 4300,
+              "ebitda_million_eur": null,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": null,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": null,
+              "tax_expense_million_eur": null,
+              "net_profit_million_eur": null,
+              "basic_eps_eur": null,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": null
+            },
+            "operating_expenses": null,
+            "revenue_by_region": null,
+            "investment_rounds": null
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import asyncio
 from dotenv import load_dotenv
 
 from browser_use_sdk import BrowserUse
-from browser_use import ChatGoogle, ChatOpenAI, Browser, Agent, ChatBrowserUse,\
+from browser_use import BrowserSession, ChatGoogle, ChatOpenAI, Browser, Agent, ChatBrowserUse,\
     Tools
 from pydantic import BaseModel
 from typing import List
@@ -88,7 +88,7 @@ GLOBAL_CNT = 0
 QUERIES_RESULTS = {}
 
 # Thread pool executor for background tasks
-THREAD_POOL = ThreadPoolExecutor(max_workers=3)
+THREAD_POOL = ThreadPoolExecutor(max_workers=10)
 TASK_LOCK = threading.Lock()
 
 def _run_browser_task(query_id: int, company_name: str, locations: List[str]):
@@ -104,6 +104,11 @@ def _run_browser_task(query_id: int, company_name: str, locations: List[str]):
 		print(f"[Thread {query_id}] Starting browser automation for {company_name}")
 		print(f"[Thread {query_id}] Model: {llm_model.model}")
 
+		# Use browser from browserless on port 3001
+		# browser = BrowserSession(
+		# 	cdp_url="ws://localhost:3001/"
+		# )
+  
 		agent = Agent(
 			override_system_message=SYSTEM_PROMPT,
 			task=prompt(company_name=company_name, locations=locations),
@@ -113,7 +118,8 @@ def _run_browser_task(query_id: int, company_name: str, locations: List[str]):
 			max_failures=2,
 			step_timeout=30,
 			max_steps=15,
-			llm_timeout=120
+			llm_timeout=120,
+			# browser_session=browser
 		)
 
 		# Run the agent
@@ -182,16 +188,21 @@ async def basic_search(company_name: str, locations: List[str] = []):
 	yield current_cnt
 
 async def main():
-    async for query_id in basic_search("Bending Spoons", locations=["IT"]):
-        print(f"Query ID: {query_id}")
-        
-        # Demonstrate that other operations can continue while browser task runs
-        print("Other operations can continue while browser task runs in background...")
-        
-        # Poll status periodically
-        for i in range(10):  # Check for 50 seconds
-            await asyncio.sleep(5)
-            status = get_query_status(query_id)
+    params = [("Bending Spoons", ["IT"]), ("OpenAI", ["US"]), ("Tesla", ["US"]),\
+        	("Microsoft", ["US"]), ("Alphabet", ["US"]), ("UiPath", None),
+         ("Databricks", ["DE", "US", "NL"])]
+
+    for _company_name, locations in params:
+        async for query_id in basic_search(_company_name, locations=locations):
+            print(f"Query ID: {query_id}")
+
+            # Demonstrate that other operations can continue while browser task runs
+            print("Other operations can continue while browser task runs in background...")
+
+            # Poll status periodically
+            for i in range(10):  # Check for 50 seconds
+                await asyncio.sleep(5)
+                status = get_query_status(query_id)
             print(f"Status check {i+1}: {status['status']}")
             if status['status'] in ['done', 'error']:
                 print(f"Task completed with status: {status['status']}")
@@ -200,7 +211,7 @@ async def main():
                 break
         
         # Cleanup
-        cleanup_thread_pool()
+        # cleanup_thread_pool()
 
 def get_query_status(query_id: int) -> dict:
 	"""Get the status of a specific query."""
