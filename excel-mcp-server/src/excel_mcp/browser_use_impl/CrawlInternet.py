@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 import os
 
 import asyncio
@@ -11,9 +12,9 @@ from browser_use import ChatGoogle, ChatOpenAI, Browser, Agent, ChatBrowserUse,\
 from pydantic import BaseModel
 from typing import List
 
-import pickle
+# import pickle
 
-from browser_use_impl.models import FinancialOverview
+from .models import FinancialOverview
 
 load_dotenv()
 
@@ -81,9 +82,10 @@ QUERIES_RESULTS = {}
 async def basic_search(company_name: str, locations: List[str] = []):
 	global GLOBAL_CNT
  
-	if os.path.exists(f'./data/{company_name}_structured_output.pkl'):
+	if os.path.exists(f'./data/{company_name}_structured_output.json'):
 		print(f'Loading existing structured output for {company_name}...')
-		structured_output: NewsArticlesOutput = pickle.load(open(f'./data/{company_name}_structured_output.pkl', 'rb'))
+		# structured_output: NewsArticlesOutput = pickle.load(open(f'./data/{company_name}_structured_output.pkl', 'rb'))
+		structured_output = json.loads(open(f'./data/{company_name}_structured_output.json', 'r').read())
 		print(structured_output)
 		current_cnt=  GLOBAL_CNT
 		GLOBAL_CNT += 1
@@ -118,10 +120,11 @@ async def basic_search(company_name: str, locations: List[str] = []):
 	QUERIES_RESULTS[current_cnt]["result"] = history.structured_output.model_dump_json()
 	QUERIES_RESULTS[current_cnt]["status"] = "done"
 
-	with open('structured_output.json', 'w') as f:
-		print(history.structured_output, file=f)
 	print(f'Usage: {history.usage}')
-	pickle.dump(history.structured_output, open(f'data/{company_name}_structured_output.pkl', 'wb'))
+	# pickle.dump(history.structured_output, open(f'data/{company_name}_structured_output.pkl', 'wb'))
+     # Save structured output as json
+	with open(f'./data/{company_name}_structured_output.json', 'w') as f:
+		f.write(history.structured_output.model_dump_json())
 
 async def main():
     async for query_id in basic_search("Bending Spoons", locations=["IT"]):

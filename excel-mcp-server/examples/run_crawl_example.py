@@ -19,7 +19,7 @@ if ROOT not in sys.path:
 if SRC not in sys.path:
     sys.path.insert(0, SRC)
 
-from excel_mcp.browser_use_client import start_crawl as start_crawl_impl
+from excel_mcp.browser_use_client import start_crawl as start_crawl_impl, get_crawl_status as get_crawl_status_impl
 
 
 async def main():
@@ -34,6 +34,28 @@ async def main():
     try:
         res = await start_crawl_impl(prompt=prompt, company_name=None, locations=["US"])
         print("Result:\n", res)
+
+        query_id = res.get("index_in_queue")
+        if query_id is None:
+            print("No browser job was enqueued (index_in_queue is None). If you expect browser processing, ensure Playwright/browser-use is installed and available.")
+            return
+
+        # Poll for status until done or timeout
+        timeout_seconds = 600
+        poll_interval = 5
+        waited = 0
+        print(f"Polling status for query id {query_id}... (timeout {timeout_seconds}s)")
+        while waited < timeout_seconds:
+            status = get_crawl_status_impl(query_id)
+            print(f"Status at {waited}s: {status.get('status')}")
+            if status.get("status") == "done":
+                print("Browser agent finished. Result:")
+                print(status.get("result"))
+                break
+            await asyncio.sleep(poll_interval)
+            waited += poll_interval
+        else:
+            print(f"Timed out waiting for query {query_id} after {timeout_seconds} seconds")
     except Exception as e:
         print("Example failed:", e)
 

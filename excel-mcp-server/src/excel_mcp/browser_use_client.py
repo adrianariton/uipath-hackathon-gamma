@@ -21,8 +21,9 @@ async def start_crawl(prompt: str, company_name: Optional[str] = None, locations
     # snapshot if the browser agent modules are missing.
     from .finviz.entity_extractor import EntityExtractor
     from .finviz.financial_data import FinvizScraper
+    from .browser_use_impl.CrawlInternet import basic_search, QUERIES_RESULTS
+
     try:
-        from browser_use_impl.CrawlInternet import basic_search, QUERIES_RESULTS
         _has_browser_impl = True
     except Exception:
         basic_search = None

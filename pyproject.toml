@@ -13,9 +13,13 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "openai>=2.8.1",
     "dotenv>=0.9.9",
+    "simplejson>=3.18.0",
     "bs4>=0.0.2",
     "browser-use>=0.9.7",
     "browser-use-sdk>=2.0.5",
+    "pydantic>=2.12.4",
+    "asyncio>=4.0.0",
+    "playwright>=1.56.0",
 ]
 [[project.authors]]
 name = "luCa"
