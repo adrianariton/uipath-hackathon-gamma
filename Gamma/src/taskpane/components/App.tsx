@@ -10,6 +10,7 @@ export interface AppProps {
 interface ChatMessage {
     sender: 'user' | 'bot';
     text: string;
+    tools_used?: any[];
 }
 
 const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
@@ -73,8 +74,9 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
 
         // A. Chat Response
         if (msg.event === "chat_response") {
-            const { reply } = msg.payload;
-            setMessages(prev => [...prev, { sender: 'bot', text: reply }]);
+            // toolsused e optional, cum fac
+            var { reply, tools_used = [] } = msg.payload;
+            setMessages(prev => [...prev, { sender: 'bot', text: reply, tools_used: tools_used }]);
         }
         // B. Status updates
         else if (msg.event === "status") {
@@ -195,16 +197,42 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
             </div>
 
             {/* CHAT */}
-            <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', marginBottom: '15px' }}>
+            <div
+                style={{
+                    flex: 1,
+                    overflowY: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    marginBottom: '15px',
+                }}
+            >
                 {messages.map((msg, idx) => (
-                    <div key={idx} style={bubbleStyle(msg.sender)}>{msg.text}</div>
+                    <div key={idx} style={bubbleStyle(msg.sender)}>
+                        {msg.text}
+
+                        {/* Afișăm tools_used dacă există */}
+                        {msg.tools_used && msg.tools_used.length > 0 && msg.tools_used.map((tool, tIdx) => (
+                            <div
+                                key={tIdx}
+                                style={{ marginTop: '5px', fontSize: '10px', color: '#555' }}
+                            >
+                                {tool.function?.name ?? "null"}
+                            </div>
+                        ))}
+                    </div>
                 ))}
-                {loading && <div style={{ alignSelf: 'center', padding: '10px' }}><Spinner size={SpinnerSize.small} label="Thinking..." /></div>}
+
+                {loading && (
+                    <div style={{ alignSelf: 'center', padding: '10px' }}>
+                        <Spinner size={SpinnerSize.small} label="Thinking..." />
+                    </div>
+                )}
+
                 <div ref={chatEndRef} />
             </div>
 
             {/* INPUT */}
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
+            < div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
                 <TextField
                     placeholder="Ask Gamma..."
                     value={prompt}
