@@ -115,9 +115,9 @@ def _run_browser_task(query_id: int, company_name: str, locations: List[str]):
 			llm=llm_model,
 			browser=browser,
 			output_model_schema=SimpleNewsOutput,
-			max_failures=2,
+			max_failures=4,
 			step_timeout=30,
-			max_steps=15,
+			max_steps=30,
 			llm_timeout=120,
 			# browser_session=browser
 		)
@@ -188,8 +188,8 @@ async def basic_search(company_name: str, locations: List[str] = []):
 	yield current_cnt
 
 async def main():
-    params = [("Bending Spoons", ["IT"]), ("OpenAI", ["US"]), ("Tesla", ["US"]),\
-        	("Microsoft", ["US"]), ("Alphabet", ["US"]), ("UiPath", None),
+    params = [
+        	# ("Microsoft", ["US"]), ("UiPath", None),
          ("Databricks", ["DE", "US", "NL"])]
 
     for _company_name, locations in params:
@@ -200,7 +200,7 @@ async def main():
             print("Other operations can continue while browser task runs in background...")
 
             # Poll status periodically
-            for i in range(10):  # Check for 50 seconds
+            for i in range(30):  # Check for 150 seconds
                 await asyncio.sleep(5)
                 status = get_query_status(query_id)
             print(f"Status check {i+1}: {status['status']}")
