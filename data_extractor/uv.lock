@@ -7,25 +7,6 @@ resolution-markers = [
 ]
 
 [[package]]
-name = "agent"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "browser-use" },
-    { name = "browser-use-sdk" },
-    { name = "playwright" },
-    { name = "pydantic" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "browser-use", specifier = ">=0.9.7" },
-    { name = "browser-use-sdk", specifier = ">=2.0.5" },
-    { name = "playwright", specifier = ">=1.56.0" },
-    { name = "pydantic", specifier = ">=2.12.4" },
-]
-
-[[package]]
 name = "aiofiles"
 version = "25.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -252,6 +233,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b3/60/480c0814b57b7f0e0a6a734624041e5127b53ae43ff48724e4cad052c172/browser_use_sdk-2.0.5.tar.gz", hash = "sha256:c93a65c555b32d4f09a7f0c8efe47950d7228bf5376272208af352a14eb6948a", size = 56526, upload-time = "2025-11-15T00:58:31.24Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/22/d5/83b9317d1bba59aba4067244ae692f535b40bb035d3903f0a44eb91f6571/browser_use_sdk-2.0.5-py3-none-any.whl", hash = "sha256:929a5395c6d88f0c041bca89823a0327b61c56efdb4d9d58aa63e2f628f47b49", size = 112366, upload-time = "2025-11-15T00:58:30.293Z" },
+]
+
+[[package]]
+name = "bs4"
+version = "0.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "beautifulsoup4" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c9/aa/4acaf814ff901145da37332e05bb510452ebed97bc9602695059dd46ef39/bs4-0.0.2.tar.gz", hash = "sha256:a48685c58f50fe127722417bae83fe6badf500d54b55f7e39ffe43b798653925", size = 698, upload-time = "2024-01-17T18:15:47.371Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/51/bb/bf7aab772a159614954d84aa832c129624ba6c32faa559dfb200a534e50b/bs4-0.0.2-py2.py3-none-any.whl", hash = "sha256:abf8742c0805ef7f662dce4b51cca104cffe52b835238afc169142ab9b3fbccc", size = 1189, upload-time = "2024-01-17T18:15:48.613Z" },
 ]
 
 [[package]]
@@ -513,6 +506,31 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/f0/32/c1aa03ccadda89487ff31b90d8651c3706ce2744bf4f2c2ae213147e89bd/cython-3.2.1-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:d7af6ad01c0fe1965d1d3badaeb6df53c1f37383ebae1ccb405b73f628f87713", size = 2967833, upload-time = "2025-11-12T19:03:40.233Z" },
     { url = "https://files.pythonhosted.org/packages/5a/7e/1194f4ba98b981bbdca945a292e4f49e87ea09d69516b24445409e7cf611/cython-3.2.1-cp39-abi3-macosx_10_9_x86_64.whl", hash = "sha256:4e9167316bf6ecfea33dcca62f074605648fb93cc053ef46b5deb3e5d12fc0d3", size = 2872858, upload-time = "2025-11-12T19:03:55.074Z" },
     { url = "https://files.pythonhosted.org/packages/aa/30/373775b8d933d781d055c1dd0f110f275a101f320dab724c8c63a7c1b945/cython-3.2.1-py3-none-any.whl", hash = "sha256:cd72c46e7bffe8250c52d400e72c8d5d3086437b6aeec5b0eca99ccd337f5834", size = 1254219, upload-time = "2025-11-12T19:02:56.14Z" },
+]
+
+[[package]]
+name = "data-extractor"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "browser-use" },
+    { name = "browser-use-sdk" },
+    { name = "bs4" },
+    { name = "openai" },
+    { name = "playwright" },
+    { name = "pydantic" },
+    { name = "requests" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "browser-use", specifier = ">=0.9.7" },
+    { name = "browser-use-sdk", specifier = ">=2.0.5" },
+    { name = "bs4", specifier = ">=0.0.2" },
+    { name = "openai", specifier = ">=2.8.1" },
+    { name = "playwright", specifier = ">=1.56.0" },
+    { name = "pydantic", specifier = ">=2.12.4" },
+    { name = "requests", specifier = ">=2.32.5" },
 ]
 
 [[package]]

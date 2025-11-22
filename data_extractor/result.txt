@@ -1,0 +1,104 @@
+{
+  "articles": [
+    {
+      "title": "Flow Traders Ltd. Condensed Consolidated Half-Year Report 2025",
+      "link": "https://www.flowtraders.com/media/cj4dlg0o/half-year-report-2025_flow-traders.pdf",
+      "is_pdf": true,
+      "date": {
+        "year": 2025,
+        "month": 6,
+        "day": 30
+      },
+      "financial_overview": {
+        "periods_data": [
+          {
+            "period": "2025 HY",
+            "income_statement": {
+              "net_trading_income_million_eur": 283.619,
+              "other_income_million_eur": -4.598,
+              "total_income_million_eur": 279.021,
+              "ebitda_million_eur": 130.328,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": 9.739,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": 107.841,
+              "tax_expense_million_eur": 20.305,
+              "net_profit_million_eur": 87.536,
+              "basic_eps_eur": 2.01,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": 46.7
+            },
+            "operating_expenses": {
+              "fixed_employee_expenses_million_eur": 47.671,
+              "variable_employee_expenses_million_eur": 48.169,
+              "technology_expenses_million_eur": 34.213,
+              "other_expenses_million_eur": 18.64,
+              "one_off_expenses_million_eur": null,
+              "total_operating_expenses_million_eur": 100.524
+            },
+            "revenue_by_region": {
+              "europe_million_eur": 158.562,
+              "americas_million_eur": 41.65,
+              "asia_million_eur": 78.809
+            },
+            "value_traded_overview": {
+              "etp_value_traded_billion_eur": 999.0,
+              "non_etp_value_traded_billion_eur": 3.417,
+              "total_value_traded_billion_eur": null,
+              "equity_billion_eur": null,
+              "ficc_billion_eur": null,
+              "other_billion_eur": null,
+              "market_etp_value_traded_billion_eur": 16.874,
+              "trading_capital_million_eur": 279.0,
+              "trading_capital_return_percent": null,
+              "average_vix": null
+            }
+          },
+          {
+            "period": "2024 HY (restated)",
+            "income_statement": {
+              "net_trading_income_million_eur": 206.619,
+              "other_income_million_eur": -0.831,
+              "total_income_million_eur": 205.787,
+              "ebitda_million_eur": 83.591,
+              "interest_expense_million_eur": null,
+              "depreciation_amortisation_million_eur": 8.716,
+              "profit_loss_on_equity_million_eur": null,
+              "profit_before_tax_million_eur": 73.025,
+              "tax_expense_million_eur": 14.046,
+              "net_profit_million_eur": 58.979,
+              "basic_eps_eur": 1.36,
+              "fully_diluted_eps_eur": null,
+              "ebitda_margin_percent": 40.6
+            },
+            "operating_expenses": {
+              "fixed_employee_expenses_million_eur": 41.052,
+              "variable_employee_expenses_million_eur": 34.989,
+              "technology_expenses_million_eur": 32.574,
+              "other_expenses_million_eur": 13.581,
+              "one_off_expenses_million_eur": null,
+              "total_operating_expenses_million_eur": 87.207
+            },
+            "revenue_by_region": {
+              "europe_million_eur": 116.675,
+              "americas_million_eur": 54.852,
+              "asia_million_eur": 34.26
+            },
+            "value_traded_overview": {
+              "etp_value_traded_billion_eur": 755.0,
+              "non_etp_value_traded_billion_eur": null,
+              "total_value_traded_billion_eur": null,
+              "equity_billion_eur": null,
+              "ficc_billion_eur": null,
+              "other_billion_eur": null,
+              "market_etp_value_traded_billion_eur": null,
+              "trading_capital_million_eur": 205.8,
+              "trading_capital_return_percent": null,
+              "average_vix": null
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

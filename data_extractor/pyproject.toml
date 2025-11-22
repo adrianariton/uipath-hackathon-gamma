@@ -1,5 +1,5 @@
 [project]
-name = "agent"
+name = "data_extractor"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,6 +7,9 @@ requires-python = ">=3.12"
 dependencies = [
     "browser-use>=0.9.7",
     "browser-use-sdk>=2.0.5",
+    "bs4>=0.0.2",
+    "openai>=2.8.1",
     "playwright>=1.56.0",
     "pydantic>=2.12.4",
+    "requests>=2.32.5",
 ]
