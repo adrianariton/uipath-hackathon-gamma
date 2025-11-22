@@ -20,9 +20,9 @@ load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY") # PUNE CHEIA TA AICI!!!
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODEL = "openai/gpt-4o"
-cert_file = "/Users/alexandruariton/.office-addin-dev-certs/localhost.crt"
-key_file  = "/Users/alexandruariton/.office-addin-dev-certs/localhost.key"
-
+cert_file = os.path.expanduser(os.getenv("CERT_FILE") or "~/.office-addin-dev-certs/localhost.crt")
+key_file  = os.path.expanduser(os.getenv("KEY_FILE") or "~/.office-addin-dev-certs/localhost.key")
+print(cert_file, key_file)
 # Globale
 AVAILABLE_TOOLS = []
 active_ws = None # Tinem minte conexiunea activa cu Excelul

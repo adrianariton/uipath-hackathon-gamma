@@ -11,8 +11,9 @@ from mcp.types import Tool, TextContent
 
 app = Server("test-mcp-server")
 
-cert_file = "/Users/alexandruariton/.office-addin-dev-certs/localhost.crt"
-key_file  = "/Users/alexandruariton/.office-addin-dev-certs/localhost.key"
+cert_file = os.path.expanduser(os.getenv("CERT_FILE") or "~/.office-addin-dev-certs/localhost.crt")
+key_file  = os.path.expanduser(os.getenv("KEY_FILE") or "~/.office-addin-dev-certs/localhost.key")
+print(cert_file, key_file)
 # Trimite comanda catre Backend-ul principal (port 8000)
 # Backend-ul o va da mai departe la Excel prin WebSocket
 # MCP SERVER: Modifică to_server
