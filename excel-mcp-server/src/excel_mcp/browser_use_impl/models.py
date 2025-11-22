@@ -72,10 +72,10 @@ class FinancialPeriodData(BaseModel):
     A complete set of financial data for a single reporting period (e.g., '4Q24', 'FY2024').
     """
     period: str = Field(..., description="The reporting period (e.g., '4Q24', 'FY2024', '1Q23').")
-    company_stats: CompanyStats
-    income_statement: IncomeStatementMetrics
-    operating_expenses: OperatingExpenses
-    revenue_by_region: RevenueBreakdown
+    company_stats: Optional[CompanyStats] = Field(None, description="Basic company statistics")
+    income_statement: Optional[IncomeStatementMetrics] = Field(None, description="Income statement metrics")
+    operating_expenses: Optional[OperatingExpenses] = Field(None, description="Operating expenses breakdown")
+    revenue_by_region: Optional[RevenueBreakdown] = Field(None, description="Revenue breakdown by region")
     investment_rounds: Optional[List[InvestmentRounds]] = Field(None, description="List of investment rounds if applicable.")
     
 
@@ -86,3 +86,30 @@ class FinancialOverview(BaseModel):
     Container for all extracted financial data periods.
     """
     periods_data: List[FinancialPeriodData]
+
+# --- SIMPLIFIED MODEL FOR EASIER LLM GENERATION ---
+
+class SimpleFinancialData(BaseModel):
+    """
+    Simplified financial data structure for easier LLM generation.
+    """
+    revenue_million_eur: Optional[float] = Field(None, description="Total revenue in millions of EUR")
+    profit_million_eur: Optional[float] = Field(None, description="Net profit in millions of EUR")
+    employees: Optional[int] = Field(None, description="Number of employees")
+    description: Optional[str] = Field(None, description="Brief description of financial highlights")
+
+class SimpleNewsArticle(BaseModel):
+    """
+    Simplified news article structure.
+    """
+    title: str = Field(..., description="Article title")
+    link: str = Field(..., description="Article URL")
+    is_pdf: bool = Field(False, description="Whether the document is a PDF")
+    summary: Optional[str] = Field(None, description="Brief summary of financial content")
+    financial_data: Optional[FinancialOverview] = Field(None, description="Extracted financial data")
+
+class SimpleNewsOutput(BaseModel):
+    """
+    Simplified output structure for news articles.
+    """
+    articles: List[SimpleNewsArticle] = Field(default_factory=list, description="List of news articles with financial data")
