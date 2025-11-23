@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "symsag-hf"
+version = "0.1.0"
+description = "SymSAG-HF: Symbolic Semantic-Augmented Graphs for dual-modality reasoning"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Apache-2.0"}
+authors = [
+  {name = "SymSAG Team", email = "symsag@example.com"}
+]
+keywords = ["graph", "huggingface", "transformers", "math"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+  "transformers>=4.39",
+  "datasets>=2.16",
+  "evaluate>=0.4.2",
+  "numpy>=1.24",
+  "scipy>=1.11",
+  "torch>=2.1",
+  "networkx>=3.1",
+  "sympy>=1.12",
+  "tdigest>=0.5.2.2",
+  "pyyaml>=6.0",
+  "tqdm>=4.66"
+]
+
+[project.optional-dependencies]
+tests = ["pytest>=7.4"]
+notebooks = ["jupyterlab>=4.0"]
+rag = ["faiss-cpu>=1.7.4"]
+
+[project.urls]
+Homepage = "https://github.com/example/symsag-hf"
+Documentation = "https://github.com/example/symsag-hf#readme"
+Issues = "https://github.com/example/symsag-hf/issues"
+
+[tool.setuptools]
+packages = ["symsag_hf"]
+
+[tool.setuptools.package-data]
+symsag_hf = ["py.typed", "configs/*.yaml", "graph_schemas/*.json"]
