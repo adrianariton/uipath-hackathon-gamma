@@ -8,7 +8,7 @@ from datetime import datetime
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
 from mcp.types import Tool, TextContent
-
+from browser_use_client import start_crawl, get_crawl_status
 app = Server("test-mcp-server")
 
 cert_file = os.path.expanduser(os.getenv("CERT_FILE") or "~/.office-addin-dev-certs/localhost.crt")
@@ -72,6 +72,7 @@ async def exec_get_random_number(arguments: dict) -> list[TextContent]:
     rand_num = random.randint(interval[0], interval[1])
     return [TextContent(type="text", text=str(rand_num))]
 
+
 # =========================================================
 # 2. DISPATCH TABLE
 # =========================================================
@@ -84,7 +85,9 @@ TOOL_DISPATCH = {
     "read_subtable": exec_read_subtable,
     "read_cells_text": exec_read_cells_text,
     "read_cells_values": exec_read_cells_values,
-    "extend_cell_formula": exec_extend_cell_formula
+    "extend_cell_formula": exec_extend_cell_formula,
+    "start_crawl": start_crawl,
+    "get_crawl_status": get_crawl_status
 }
 
 # =========================================================
@@ -94,6 +97,24 @@ TOOL_DISPATCH = {
 @app.list_tools()
 async def list_tools() -> list[Tool]:
     return [
+        Tool(name="start_crawl",
+             description="Start a browser-based crawl for a given prompt and company name.",
+             inputSchema={
+                 "type": "object",
+                 "properties": {
+                     "prompt": {"type": "string"},
+                     "company_name": {"type": "string"},
+                 },
+                 "required": ["prompt"]
+             }),
+        Tool(name="get_crawl_status",
+             description="Get the status/result of a previously started crawl by query id.",
+             inputSchema={
+                 "type": "object",
+                 "properties": {
+                     "query_id": {"type": "number"} 
+                 }
+             }),
         Tool(
             name="modify_cells",
             description="Write values or formulas into Excel cells. The argument MUST be a dictionary called 'cells' where keys are cell addresses (e.g., 'A1') and values are the content.",

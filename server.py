@@ -8,6 +8,7 @@ import json
 import requests
 import asyncio
 import uuid
+import traceback
 import threading
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -245,9 +246,11 @@ def handle_chat_async(user_message, ws):
 
         except Exception as e:
             print(f"Eroare Chat: {e}")
+            t = traceback.format_exc()
+            print(f"t: {t}")
             ws.send(json.dumps({
                 "event": "chat_response",
-                "payload": {"reply": f"Error: {str(e)}"}
+                "payload": {"reply": f"Error: {str(e)} {t}"}
             }))
 
 if __name__ == "__main__":
