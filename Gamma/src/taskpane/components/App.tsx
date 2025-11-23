@@ -91,11 +91,9 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
 
             try {
                 switch (tool_name) {
+                    // ==================== CELL OPERATIONS ====================
                     case "modify_cells":
                         result = await ExcelTools.modify_cells(args.cells);
-                        break;
-                    case "read_subtable":
-                        result = await ExcelTools.read_subtable(args.col1, args.col2, args.row1, args.row2);
                         break;
                     case "read_cells_text":
                         result = await ExcelTools.read_cells_text(args.cells);
@@ -103,20 +101,188 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
                     case "read_cells_values":
                         result = await ExcelTools.read_cells_values(args.cells);
                         break;
-                    case "extend":
+                    case "read_range":
+                        result = await ExcelTools.read_range(args.address);
+                        break;
+                    case "read_subtable":
+                        result = await ExcelTools.read_subtable(
+                            args.col1, args.col2, args.row1, args.row2
+                        );
+                        break;
+                    case "clear_range":
+                        result = await ExcelTools.clear_range(args.address);
+                        break;
+                    case "extend_cell_formula":
                         result = await ExcelTools.extend(args.source, args.target);
                         break;
+
+                    // ==================== WORKSHEET OPERATIONS ====================
+                    case "get_active_sheet":
+                        result = await ExcelTools.get_active_sheet();
+                        break;
+                    case "list_sheets":
+                        result = await ExcelTools.list_sheets();
+                        break;
+                    case "create_sheet":
+                        result = await ExcelTools.create_sheet(args.name);
+                        break;
+                    case "activate_sheet":
+                        result = await ExcelTools.activate_sheet(args.name);
+                        break;
+                    case "delete_sheet":
+                        result = await ExcelTools.delete_sheet(args.name);
+                        break;
+                    case "rename_sheet":
+                        result = await ExcelTools.rename_sheet(args.oldName, args.newName);
+                        break;
+
+                    // ==================== FORMATTING ====================
+                    case "format_cells":
+                        result = await ExcelTools.format_cells(args.address, args.format);
+                        break;
+                    case "add_border":
+                        result = await ExcelTools.add_border(args.address, args.style);
+                        break;
+                    case "set_number_format":
+                        result = await ExcelTools.set_number_format(args.address, args.format);
+                        break;
+
+                    // ==================== ROWS & COLUMNS ====================
+                    case "insert_rows":
+                        result = await ExcelTools.insert_rows(args.startRow, args.count);
+                        break;
+                    case "delete_rows":
+                        result = await ExcelTools.delete_rows(args.startRow, args.count);
+                        break;
+                    case "insert_columns":
+                        result = await ExcelTools.insert_columns(args.column, args.count);
+                        break;
+                    case "delete_columns":
+                        result = await ExcelTools.delete_columns(args.column, args.count);
+                        break;
+                    case "auto_fit_columns":
+                        result = await ExcelTools.auto_fit_columns(args.address);
+                        break;
+                    case "auto_fit_rows":
+                        result = await ExcelTools.auto_fit_rows(args.address);
+                        break;
+
+                    // ==================== CHARTS ====================
                     case "create_chart":
-                        // args is expected to be the options object matching ExcelTools.create_chart
                         result = await ExcelTools.create_chart(args);
                         break;
                     case "delete_all_charts":
                         result = await ExcelTools.delete_all_charts();
                         break;
+
+                    // ==================== TABLES ====================
+                    case "create_table":
+                        result = await ExcelTools.create_table(args.address, args.tableName, args.hasHeaders);
+                        break;
+                    case "list_tables":
+                        result = await ExcelTools.list_tables();
+                        break;
+                    case "delete_table":
+                        result = await ExcelTools.delete_table(args.tableName);
+                        break;
+
+                    // ==================== FORMULAS ====================
+                    case "get_formula":
+                        result = await ExcelTools.get_formula(args.address);
+                        break;
+                    case "set_formula":
+                        result = await ExcelTools.set_formula(args.address, args.formula);
+                        break;
+
+                    // ==================== SORTING ====================
+                    case "sort_range":
+                        result = await ExcelTools.sort_range(args.address, args.columnIndex, args.ascending);
+                        break;
+
+                    // ==================== FIND & REPLACE ====================
+                    case "find_in_range":
+                        result = await ExcelTools.find_in_range(args.address, args.searchText);
+                        break;
+                    case "replace_in_range":
+                        result = await ExcelTools.replace_in_range(args.address, args.searchText, args.replaceText);
+                        break;
+
+                    // ==================== NAMED RANGES ====================
+                    case "create_named_range":
+                        result = await ExcelTools.create_named_range(args.name, args.address);
+                        break;
+                    case "get_named_range":
+                        result = await ExcelTools.get_named_range(args.name);
+                        break;
+                    case "list_named_ranges":
+                        result = await ExcelTools.list_named_ranges();
+                        break;
+
+                    // ==================== PROTECTION ====================
+                    case "protect_sheet":
+                        result = await ExcelTools.protect_sheet(args.password);
+                        break;
+                    case "unprotect_sheet":
+                        result = await ExcelTools.unprotect_sheet(args.password);
+                        break;
+
+                    // ==================== UTILITIES ====================
+                    case "get_used_range":
+                        result = await ExcelTools.get_used_range();
+                        break;
+                    case "get_selection":
+                        result = await ExcelTools.get_selection();
+                        break;
+                    case "calculate":
+                        result = await ExcelTools.calculate();
+                        break;
+
+                    // ==================== UTILITY TOOLS (non-excel) ====================
+                    case "get_current_time":
+                        result = new Date().toISOString();
+                        break;
+                    case "get_random_number":
+                        result = Math.random();
+                        break;
+                    // Dacă astea sunt remote, schimbăm implementarea
+                    case "start_crawl":
+                        // implement remote call aici
+                        break;
+                    case "get_crawl_status":
+                        // implement remote call aici
+                        break;
+
                     default:
                         console.warn("Unknown tool:", tool_name);
-                        result = "Error: Unknown tool name";
+                        result = `Error: Unknown tool name '${tool_name}'`;
                 }
+                // switch (tool_name) {
+                //     case "modify_cells":
+                //         result = await ExcelTools.modify_cells(args.cells);
+                //         break;
+                //     case "read_subtable":
+                //         result = await ExcelTools.read_subtable(args.col1, args.col2, args.row1, args.row2);
+                //         break;
+                //     case "read_cells_text":
+                //         result = await ExcelTools.read_cells_text(args.cells);
+                //         break;
+                //     case "read_cells_values":
+                //         result = await ExcelTools.read_cells_values(args.cells);
+                //         break;
+                //     case "extend":
+                //         result = await ExcelTools.extend(args.source, args.target);
+                //         break;
+                //     case "create_chart":
+                //         // args is expected to be the options object matching ExcelTools.create_chart
+                //         result = await ExcelTools.create_chart(args);
+                //         break;
+                //     case "delete_all_charts":
+                //         result = await ExcelTools.delete_all_charts();
+                //         break;
+                //     default:
+                //         console.warn("Unknown tool:", tool_name);
+                //         result = "Error: Unknown tool name";
+                // }
 
                 if (ws.current && ws.current.readyState === WebSocket.OPEN) {
                     ws.current.send(JSON.stringify({
@@ -181,7 +347,9 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
         borderRadius: '12px',
         maxWidth: '85%',
         marginBottom: '8px',
-        fontSize: '13px'
+        fontSize: '13px',
+        maxHeight: '100px',
+        overflowY: 'auto' as React.CSSProperties['overflowY'],
     });
 
     return (
@@ -213,12 +381,19 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
                     marginBottom: '15px',
                 }}
             >
-                {messages.map((msg, idx) => (
-                    msg.text.includes("sorry") ? null :
+
+                {messages.map((msg, idx) => {
+                    const isLast = idx === messages.length - 1;
+                    const next = messages[idx + 1];
+                    const nextIsUser = next?.sender === "user";
+                    const isUser = msg.sender === "user";
+
+                    // Afișăm doar dacă următorul e user sau e ultimul
+                    if (!nextIsUser && !isLast && !isUser) return null;
+
+                    return (
                         <div key={idx} style={bubbleStyle(msg.sender)}>
                             {msg.text}
-
-                            {/* Afișăm tools_used dacă există */}
                             {msg.tools_used && msg.tools_used.length > 0 && msg.tools_used.map((tool, tIdx) => (
                                 <div
                                     key={tIdx}
@@ -228,7 +403,9 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
                                 </div>
                             ))}
                         </div>
-                ))}
+
+                    );
+                })}
 
                 {loading && (
                     <div style={{ alignSelf: 'center', padding: '10px' }}>

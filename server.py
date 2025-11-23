@@ -32,7 +32,8 @@ pending_requests = {} # id -> {event: Event, response: val}
 messages = [
      {"role": "system", "content": ("You are a helpful Excel assistant."
         "You may use multiple tools in sequence if it helps accomplish the user's request. "
-        "When generating a response, call all relevant tools first, then produce a final answer.")},
+        "When generating a response, call all relevant tools first, then produce a final answer."
+                                    "Try to not give verbose messages, and summarize them when possible.")},
 ]
 
 # --- 1. TOOL FETCHING (La fel ca inainte) ---
