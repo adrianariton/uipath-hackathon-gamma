@@ -184,7 +184,7 @@ def handle_chat_async(user_message, ws):
     global messages
     r = ""
     i = 0
-    while r != "Success":
+    while not "Success" in r:
         i += 1
         if (i > 5):
             break
@@ -220,12 +220,12 @@ def handle_chat_async(user_message, ws):
                     res_txt = execute_tool_locally(t_name, t_args)
 
                     print(f"🤖 AI a executat: {t_name}")
-                    print(f"Raspuns: {res_txt}")
+                    print(f"Raspuns: |{res_txt}|")
                     r = res_txt
                     messages.append({
                         "role": "tool",
                         "tool_call_id": tc["id"],
-                        "content": res_txt
+                        "content": res_txt,
                     })
 
                 # 3. Final answer dupa tool execution

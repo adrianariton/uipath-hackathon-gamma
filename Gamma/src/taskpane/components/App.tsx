@@ -214,19 +214,20 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
                 }}
             >
                 {messages.map((msg, idx) => (
-                    <div key={idx} style={bubbleStyle(msg.sender)}>
-                        {msg.text}
+                    msg.text.includes("sorry") ? null :
+                        <div key={idx} style={bubbleStyle(msg.sender)}>
+                            {msg.text}
 
-                        {/* Afișăm tools_used dacă există */}
-                        {msg.tools_used && msg.tools_used.length > 0 && msg.tools_used.map((tool, tIdx) => (
-                            <div
-                                key={tIdx}
-                                style={{ marginTop: '5px', fontSize: '10px', color: '#555' }}
-                            >
-                                {tool.function?.name ?? "null"}
-                            </div>
-                        ))}
-                    </div>
+                            {/* Afișăm tools_used dacă există */}
+                            {msg.tools_used && msg.tools_used.length > 0 && msg.tools_used.map((tool, tIdx) => (
+                                <div
+                                    key={tIdx}
+                                    style={{ marginTop: '5px', fontSize: '10px', color: '#555' }}
+                                >
+                                    {tool.function?.name ?? "null"}
+                                </div>
+                            ))}
+                        </div>
                 ))}
 
                 {loading && (
