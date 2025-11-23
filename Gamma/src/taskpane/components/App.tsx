@@ -106,6 +106,13 @@ const App: React.FC<AppProps> = ({ isOfficeInitialized }) => {
                     case "extend":
                         result = await ExcelTools.extend(args.source, args.target);
                         break;
+                    case "create_chart":
+                        // args is expected to be the options object matching ExcelTools.create_chart
+                        result = await ExcelTools.create_chart(args);
+                        break;
+                    case "delete_all_charts":
+                        result = await ExcelTools.delete_all_charts();
+                        break;
                     default:
                         console.warn("Unknown tool:", tool_name);
                         result = "Error: Unknown tool name";
